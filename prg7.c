@@ -1,3 +1,9 @@
+/* Stick man on a bicycle
+
+basex and basey represent the co-oridnates of the origin i've chosen
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <graphics.h>
@@ -86,11 +92,11 @@ int main(int argc, void* argv[])
 	initgraph(&gd, &gm, "f:\\tc\\bgi");
 
 
-	int c,len,angle,scale;
+	int c,len,len2,angle,scale;
 	do{
 		cleardevice();
-		circle (150, 200,30);// left tyre
-		circle (250, 200,30);// right tyre
+		circle (150, 200,30);// left tire
+		circle (250, 200,30);// right tire
 		line(180,200,220,200);// cycle body
 		circle (200, 140,15);// stick head
 		line (200, 155,200, 180);// stick body
@@ -99,23 +105,28 @@ int main(int argc, void* argv[])
 		line (200, 165,250,165);// stick hand
 		line (250, 170,250, 160);// handle
 		printf("MENU:\n");
-		printf("1. Translate\n");
+		printf("1. Translate \n");
+
 		printf("2. Rotate\n");
 		printf("3. Scale\n");
 		printf("4. Exit\n");
 		scanf("%d",&c);
+		delay(20);
 		switch(c)
 		{
 			case 1:
 
-				printf("Enter length\n");
+				printf("Enter length x\n");
 				scanf("%d",&len);
+				printf("Enter length y\n");
+				scanf("%d",&len2);
+				delay(20);
 				for(i=0;i<=len;i++)
 				{
 					theta=i/2;
 					cleardevice();
-					circle (150+i, 200,30);// left tyre
-					circle (250+i, 200,30);// right tyre
+					circle (150+i, 200,30);// left tire
+					circle (250+i, 200,30);// right tire
 					line(180+i,200,220+i,200);// cycle body
 					circle (200+i, 140,15);// stick head
 					line (200+i, 155,200+i, 180);// stick body
@@ -123,6 +134,22 @@ int main(int argc, void* argv[])
 					line (200+i, 180,210+i,210);// stick right leg
 					line (200+i, 165,250+i,165);// stick hand
 					line (250+i, 170,250+i, 160);// handle
+					delay(10);
+				}
+
+				for(i=0;i<=len;i++)
+				{
+					theta=i/2;
+					cleardevice();
+					circle (150, 200+i,30);// left tire
+					circle (250, 200+i,30);// right tire
+					line(180,200+i,220,200+i);// cycle body
+					circle (200, 140+i,15);// stick head
+					line (200, 155+i,200, 180+i);// stick body
+					line (200, 180+i,190,210+i);// stick left leg
+					line (200, 180+i,210,210+i);// stick right leg
+					line (200, 165+i,250,165+i);// stick hand
+					line (250, 170+i,250, 160+i);// handle
 					delay(10);
 				}
 				break;
@@ -135,8 +162,8 @@ int main(int argc, void* argv[])
 					cleardevice();
 					basex=150;
 					basey=200;
-					circle (150, 200,30);// left tyre
-					circle (get_x(250, 200),get_y(250, 200),30);// right tyre
+					circle (150, 200,30);// left tire
+					circle (get_x(250, 200),get_y(250, 200),30);// right tire
 					line(get_x(180, 200),get_y(180, 200),get_x(220, 200),get_y(220, 200));// cycle body
 					circle (get_x(200, 140),get_y(200, 140),15);//  stick head
 
@@ -154,8 +181,8 @@ int main(int argc, void* argv[])
 				cleardevice();
 				printf("Enter scaling factor\n");
 				scanf("%d",&scale);
-				circle (150*scale, 200*scale,30*scale);// left tyre
-				circle (250*scale, 200*scale,30*scale);// right tyre
+				circle (150*scale, 200*scale,30*scale);// left tire
+				circle (250*scale, 200*scale,30*scale);// right tire
 				line(180*scale,200*scale,220*scale,200*scale);// cycle body
 				circle (200*scale, 140*scale,15*scale);// stick head
 				line (200*scale, 155*scale,200*scale, 180*scale);// stick body
@@ -165,6 +192,8 @@ int main(int argc, void* argv[])
 				line (250*scale, 170*scale,250*scale, 160*scale);// handle
 				getch();
 				break;
+
+
 		}
 	}while(c!=4);
 
